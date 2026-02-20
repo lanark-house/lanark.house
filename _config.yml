@@ -17,6 +17,9 @@ description: |
 baseurl: "/"
 url: https://lanark.house
 plugins:
+- jekyll-feed
+- jekyll-seo-tag
+- jekyll-mermaid
 - jekyll-remote-theme
 - jekyll-sitemap
 remote_theme: daviddarnes/garth

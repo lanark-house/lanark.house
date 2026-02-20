@@ -41,7 +41,7 @@ permalink: /
 
   <!-- Builder Cards Grid -->
   <div class="px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {% assign builder_pages = site.pages | where_exp: "page", "page.path contains 'builders/'" | sort: "rating" | reverse %}
+    {% assign builder_pages = site.pages | where: "layout", "review" | sort: "rating" | reverse %}
     {% for builder_page in builder_pages %}
       <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
         <div class="h-48 w-full bg-slate-200 flex items-center justify-center">
@@ -83,7 +83,7 @@ permalink: /
   </section>
 
   <footer class="mt-20 px-6 py-12 border-t border-slate-200 text-center">
-    <p class="text-sm text-slate-500 mb-2">© {{ "now" | date: "%Y" }} lanark.house. All rights reserved.</p>
+    <p class="text-sm text-slate-500 mb-2">&copy; {{ "now" | date: "%Y" }} lanark.house. All rights reserved.</p>
     <p class="text-xs text-slate-400">Independent reviews for Calgary homebuyers.</p>
   </footer>
 </main>
