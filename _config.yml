@@ -1,35 +1,32 @@
 ---
 title: lanark.house
-timezone: America/Edmonton
-collections:
-  grievances:
-    title: Grievances
-    output: true
-  posts:
-    title: Posts
-    output: true
 description: |
   This repository and site serve as a way to document and
   inventory every step of my new home purchase process.
+url: "https://lanark.house"
 baseurl: ""
-url: https://lanark.house
+
+# Plugins
 plugins:
-- jekyll-remote-theme
-- jekyll-sitemap
-- jekyll-feed
-- jekyll-seo-tag
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Theme
 remote_theme: daviddarnes/garth
+
+# Exclusions
 exclude:
   - _uploads
   - vendor
   - .bundle
   - .jekyll-cache
   - .jekyll-metadata
-  - .ruby-version
   - bin
+  - node_modules
   - Gemfile
   - Gemfile.lock
-  - node_modules
   - sitemap.txt
   - GEMINI.md
   - CNAME
