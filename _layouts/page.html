@@ -2,16 +2,27 @@
 layout: default
 ---
 
-{% include site-header.html %}
+<header class="sticky top-0 z-50 bg-mint/90 backdrop-blur-md border-b border-primary/5">
+  <div class="flex items-center justify-between px-6 py-4 max-w-4xl mx-auto w-full">
+    <div class="flex items-center gap-4">
+      <a href="{{ '/' | relative_url }}" class="flex items-center justify-center p-2 rounded-full hover:bg-primary/5 transition-colors">
+        <span class="material-symbols-outlined text-primary">arrow_back</span>
+      </a>
+      <h1 class="font-display text-2xl font-bold text-primary">lanark.house</h1>
+    </div>
+    <nav class="flex gap-6 text-xs font-bold uppercase tracking-widest">
+      <a href="{{ '/' | relative_url }}" class="text-primary/50 hover:text-primary transition-colors">Home</a>
+      <a href="{{ '/about/' | relative_url }}" class="text-primary hover:text-primary transition-colors">About</a>
+    </nav>
+  </div>
+</header>
 
-<main class="main  container">
-
-  <article class="article  article--page  content  typeset">
-
+<main class="max-w-4xl mx-auto py-12 px-6">
+  <article class="prose prose-slate max-w-none
+    prose-headings:font-display prose-headings:text-primary prose-headings:font-bold
+    prose-p:text-primary/80 prose-p:font-light prose-p:leading-relaxed
+    prose-strong:text-primary prose-strong:font-bold
+    prose-li:text-primary/80 prose-li:font-light">
     {{ content }}
-
   </article>
-
 </main>
-
-{% include site-footer.html %}
