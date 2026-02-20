@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 gem "jekyll", "4.1.0"
+gem "public_suffix", "~> 6.0"
 group :jekyll_plugins do
   gem "jekyll-remote-theme"
   gem "jekyll-sitemap"
