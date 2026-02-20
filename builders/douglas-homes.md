@@ -1,5 +1,5 @@
 ---
-layout: builder
+layout: review
 title: "Douglas Homes Review"
 builder: "douglas-homes"
 address:

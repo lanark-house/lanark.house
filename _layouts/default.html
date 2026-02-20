@@ -12,6 +12,9 @@
 		{% endif %}
 
 		<link rel="stylesheet" href="{{ "/assets/styles.css" | relative_url }}">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 		{% if site.favicon %}
 			<link rel="shortcut icon" href="{{ site.favicon }}">
@@ -19,12 +22,21 @@
 			<link rel="shortcut icon" href="{{ site.logo }}">
 		{% endif %}
 
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .text-primary { color: #13a4ec; }
+      .bg-primary { background-color: #13a4ec; }
+    </style>
 	</head>
-	<body>
+	<body class="bg-slate-50 text-slate-900 antialiased">
 
 		{{ content }}
 
-		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400i,700|Neuton:400,700" rel="stylesheet">
 		{% include legal-disclaimer-widget.html %}
 	</body>
 </html>

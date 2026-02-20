@@ -1,5 +1,5 @@
 ---
-layout: builder
+layout: review
 title: "Jayman Built Review"
 builder: "jayman-built"
 address:
