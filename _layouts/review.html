@@ -10,10 +10,7 @@ layout: default
       </a>
       <h1 class="font-display text-2xl font-bold text-primary">lanark.house</h1>
     </div>
-    <nav class="flex gap-6 text-xs font-bold uppercase tracking-widest">
-      <a href="{{ '/' | relative_url }}" class="text-primary/50 hover:text-primary transition-colors">Home</a>
-      <a href="{{ '/about/' | relative_url }}" class="text-primary/50 hover:text-primary transition-colors">About</a>
-    </nav>
+    {% include site-nav.html %}
   </div>
 </header>
 
