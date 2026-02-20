@@ -4,86 +4,83 @@ title: Home
 permalink: /
 ---
 
-<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-  <div class="flex items-center justify-between px-4 py-3 max-w-6xl mx-auto w-full">
-    <h1 class="text-primary text-xl font-black tracking-tight">lanark<span class="text-slate-900">.house</span></h1>
-    <nav class="flex gap-4 items-center">
-      <a class="text-sm font-semibold text-primary" href="{{ '/' | relative_url }}">Home</a>
-      <a class="text-sm font-medium text-slate-600" href="{{ '/about/' | relative_url }}">About</a>
-    </nav>
-  </div>
+<nav class="px-6 py-6 max-w-4xl mx-auto w-full flex justify-end gap-6 text-xs font-bold uppercase tracking-widest">
+  <a href="{{ "/" | relative_url }}" class="text-primary hover:text-primary/70 transition-colors">Home</a>
+  <a href="{{ "/about/" | relative_url }}" class="text-primary/50 hover:text-primary transition-colors">About</a>
+</nav>
+<header class="px-6 pt-12 pb-10 max-w-4xl mx-auto w-full">
+  <h1 class="font-display text-5xl mb-3 text-primary">lanark.house</h1>
+  <p class="text-primary/70 text-lg leading-relaxed max-w-md font-light">
+    My personal documentation of the real experience buying and building a new home in Calgary.
+  </p>
 </header>
 
-<main class="max-w-6xl mx-auto pb-24">
-  <!-- Hero Section -->
-  <section class="relative h-[420px] w-full overflow-hidden mb-12">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(16, 28, 34, 0.6), rgba(16, 28, 34, 0.8)), url('https://images.unsplash.com/photo-1600585154340-be6199fce874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
-    </div>
-    <div class="relative h-full flex flex-col items-center justify-center px-6 text-center">
-      <span class="bg-primary/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 border border-primary/30 uppercase tracking-widest">Calgary Homeowner Guide</span>
-      <h2 class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight mb-4">
-        The Journey Home
-      </h2>
-      <p class="text-slate-200 text-lg font-normal leading-relaxed mb-8 max-w-xl">
-        Documenting the real experience of buying and building a new home in Calgary.
-      </p>
-      <a href="#builders" class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-primary/20 flex items-center gap-2 transition-all">
-        Browse Builders
-        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-      </a>
-    </div>
-  </section>
+<main class="px-6 flex-grow space-y-12 max-w-4xl mx-auto w-full">
+  <section>
+    <h2 class="text-[10px] font-bold uppercase tracking-[0.25em] text-primary/40 mb-8">Builder Reviews</h2>
 
-  <!-- Builder Grid Heading -->
-  <div id="builders" class="px-4 pt-8 pb-2 flex items-center justify-between mb-6">
-    <h3 class="text-2xl font-black text-slate-900">Builder Reviews</h3>
-  </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {% assign builder_pages = site.pages | where: "layout", "review" | sort: "rating" | reverse %}
+      {% for builder_page in builder_pages %}
+        <article class="bg-off-white rounded-xl shadow-sm border border-primary/5 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-md">
+          <div class="p-6 pb-2">
+            <h3 class="font-display text-2xl font-bold text-primary mb-3">
+              {{ builder_page.title | replace: ' Review', '' }}
+            </h3>
 
-  <!-- Builder Cards Grid -->
-  <div class="px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {% assign builder_pages = site.pages | where: "layout", "review" | sort: "rating" | reverse %}
-    {% for builder_page in builder_pages %}
-      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
-        <div class="h-48 w-full bg-slate-200 flex items-center justify-center">
-           <span class="material-symbols-outlined text-slate-400" style="font-size: 64px;">domain</span>
-        </div>
-        <div class="p-6 flex-1 flex flex-col">
-          <div class="flex justify-between items-start mb-2">
-            <h4 class="text-xl font-bold text-slate-900">{{ builder_page.title | replace: ' Review', '' }}</h4>
-            <div class="flex text-primary">
-              {% assign rating = builder_page.rating | plus: 0 %}
-              {% for i in (1..5) %}
-                {% if i <= rating %}
-                  <span class="material-symbols-outlined filled-star" style="font-size: 18px;">star</span>
-                {% else %}
-                  <span class="material-symbols-outlined" style="font-size: 18px;">star</span>
-                {% endif %}
-              {% endfor %}
+            <div class="flex items-center gap-2 mb-4 bg-primary/5 p-3 rounded-lg border border-primary/10">
+              <span class="material-symbols-outlined text-primary text-sm">person</span>
+              <div class="text-sm">
+                <span class="font-bold text-primary">Builder Rating:</span>
+                <span class="text-primary/70 ml-1">{{ builder_page.rating }}/5</span>
+              </div>
             </div>
           </div>
-          <p class="text-slate-600 text-sm leading-relaxed mb-6 flex-1">
-            {{ builder_page.content | strip_html | truncatewords: 30 }}
-          </p>
-          <a href="{{ builder_page.url | relative_url }}" class="w-full bg-primary/10 hover:bg-primary/20 text-primary font-bold py-3 rounded-lg text-sm transition-colors border border-primary/20 text-center">
-            Read Full Review
-          </a>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
 
-  <!-- Information Text Section -->
-  <section class="mt-20 px-6 py-12 bg-primary/5 border-y border-primary/10 rounded-2xl mx-4">
-    <div class="max-w-3xl mx-auto text-center">
-      <h3 class="text-2xl font-black text-slate-900 mb-4">Why Lanark House?</h3>
-      <p class="text-lg text-slate-600 leading-relaxed italic">
-        "Buying a home is the biggest investment of your life. We believe transparency in the building process shouldn't be a luxury. We track every milestone, from the first shovels in the dirt to the final walkthrough."
-      </p>
+          <div class="px-6 py-2 flex-grow">
+            <div class="mb-2">
+              <span class="font-bold text-primary text-base flex items-center gap-2 uppercase tracking-tight">
+                <span class="material-symbols-outlined text-primary text-base">info</span>
+                Summary
+              </span>
+            </div>
+            <p class="text-sm text-primary/70 leading-relaxed mb-4">
+              {{ builder_page.content | strip_html | truncatewords: 25 }}
+            </p>
+
+            {% if builder_page.cons %}
+            <ul class="space-y-2 text-sm text-primary/80 leading-relaxed mb-4">
+              {% for con in builder_page.cons limit:2 %}
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-red-400 text-[18px] shrink-0">close</span>
+                <span>{{ con | truncate: 60 }}</span>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+
+          <div class="p-6 pt-4 border-t border-primary/5 bg-primary/[0.02]">
+            <a href="{{ builder_page.url | relative_url }}" class="w-full bg-primary hover:bg-primary/90 text-mint font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-sm group text-sm">
+              Read Full Review
+              <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </a>
+          </div>
+        </article>
+      {% endfor %}
     </div>
   </section>
 
-  <footer class="mt-20 px-6 py-12 border-t border-slate-200 text-center">
-    <p class="text-sm text-slate-500 mb-2">&copy; {{ "now" | date: "%Y" }} lanark.house. All rights reserved.</p>
-    <p class="text-xs text-slate-400">Independent reviews for Calgary homebuyers.</p>
-  </footer>
+  <!-- Personal Mission Section -->
+  <section class="py-12 border-t border-primary/10">
+    <div class="max-w-2xl">
+      <p class="text-xl text-primary/80 leading-relaxed italic font-light">
+        "I believe that buying a home is the biggest investment of my life, and transparency in the building process shouldn't be a luxury. This site is my personal journal to track every milestone, from the first shovels in the dirt to the final walkthrough."
+      </p>
+    </div>
+  </section>
 </main>
+
+<footer class="mt-20 border-t border-primary/10 bg-mint/50 py-12 text-center">
+  <p class="text-primary/40 text-[10px] uppercase tracking-[0.3em]">© {{ "now" | date: "%Y" }} lanark.house</p>
+</footer>

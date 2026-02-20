@@ -2,138 +2,135 @@
 layout: default
 ---
 
-<style>
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    vertical-align: middle;
-  }
-  .filled-star {
-    font-variation-settings: 'FILL' 1 !important;
-  }
-  .text-primary { color: #13a4ec; }
-  .bg-primary { background-color: #13a4ec; }
-  .border-primary { border-color: #13a4ec; }
-</style>
-
-<header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-  <div class="flex items-center justify-between px-4 py-3 max-w-4xl mx-auto">
-    <div class="flex items-center gap-2">
-      <a href="{{ '/' | relative_url }}" class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-        <span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back</span>
+<header class="sticky top-0 z-50 bg-mint/90 backdrop-blur-md border-b border-primary/5">
+  <div class="flex items-center justify-between px-6 py-4 max-w-4xl mx-auto w-full">
+    <div class="flex items-center gap-4">
+      <a href="{{ '/' | relative_url }}" class="flex items-center justify-center p-2 rounded-full hover:bg-primary/5 transition-colors">
+        <span class="material-symbols-outlined text-primary">arrow_back</span>
       </a>
-      <h1 class="text-lg font-bold tracking-tight text-primary">lanark.house</h1>
+      <h1 class="font-display text-2xl font-bold text-primary">lanark.house</h1>
     </div>
+    <nav class="flex gap-6 text-xs font-bold uppercase tracking-widest">
+      <a href="{{ '/' | relative_url }}" class="text-primary/50 hover:text-primary transition-colors">Home</a>
+      <a href="{{ '/about/' | relative_url }}" class="text-primary/50 hover:text-primary transition-colors">About</a>
+    </nav>
   </div>
 </header>
 
-<main class="max-w-4xl mx-auto pb-24">
+<main class="max-w-4xl mx-auto pb-24 px-6">
   <!-- Builder Profile Hero -->
-  <section class="p-6 bg-white dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800">
-    <div class="flex flex-col gap-4">
-      <div class="flex items-center gap-4">
-        <div class="size-20 bg-primary/10 rounded-xl overflow-hidden flex items-center justify-center border border-primary/20" style="width: 80px; height: 80px; display: flex; align-items: center; justify-center; background-color: rgba(19, 164, 236, 0.1); border-radius: 0.75rem;">
+  <section class="py-12 border-b border-primary/10">
+    <div class="flex flex-col gap-6">
+      <div class="flex items-center gap-6">
+        <div class="size-20 bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10" style="width: 80px; height: 80px;">
           <span class="material-symbols-outlined text-primary" style="font-size: 40px;">domain</span>
         </div>
         <div>
-          <h2 class="text-2xl font-black leading-tight text-slate-900 dark:text-white">{{ page.title }}</h2>
-          <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Calgary Home Builder</p>
+          <h2 class="font-display text-4xl font-bold text-primary leading-tight">{{ page.title }}</h2>
+          <p class="text-primary/50 text-sm font-bold uppercase tracking-widest mt-1">Calgary Home Builder Review</p>
         </div>
       </div>
 
       <!-- Rating Block -->
-      <div class="flex items-end gap-3 py-2">
+      <div class="flex items-center gap-4">
         <div class="flex flex-col">
-          <span class="text-4xl font-black text-slate-900 dark:text-white">{{ page.rating }}</span>
-          <div class="flex text-primary">
-            {% assign rating = page.rating | plus: 0 %}
-            {% for i in (1..5) %}
-              {% if i <= rating %}
-                <span class="material-symbols-outlined filled-star">star</span>
-              {% else %}
-                <span class="material-symbols-outlined">star</span>
-              {% endif %}
-            {% endfor %}
+          <div class="flex items-center gap-3">
+            <span class="text-5xl font-display font-bold text-primary">{{ page.rating }}</span>
+            <div class="flex text-primary">
+              {% assign rating = page.rating | plus: 0 %}
+              {% for i in (1..5) %}
+                {% if i <= rating %}
+                  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                {% else %}
+                  <span class="material-symbols-outlined">star</span>
+                {% endif %}
+              {% endfor %}
+            </div>
           </div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-primary/40 mt-1">Personal Rating</span>
         </div>
       </div>
 
-      <!-- Contact Metadata -->
-      <div class="grid grid-cols-1 gap-3 mt-2">
-        <div class="flex items-start gap-3 text-slate-600 dark:text-slate-300">
-          <span class="material-symbols-outlined text-primary text-xl">location_on</span>
-          <p class="text-sm">
-            {{ page.address.streetAddress }}<br>
-            {{ page.address.addressLocality }}, {{ page.address.addressRegion }} {{ page.address.postalCode }}
-          </p>
-        </div>
+      <!-- Address Metadata -->
+      <div class="flex items-start gap-3 text-primary/70">
+        <span class="material-symbols-outlined text-primary/40 text-xl">location_on</span>
+        <p class="text-sm font-light">
+          {{ page.address.streetAddress }}, {{ page.address.addressLocality }}, {{ page.address.addressRegion }} {{ page.address.postalCode }}
+        </p>
       </div>
     </div>
   </section>
 
   <!-- Pros & Cons -->
-  <section class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-    <div class="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/50 p-4 rounded-xl" style="background-color: #ecfdf5; border: 1px solid #d1fae5; border-radius: 0.75rem; padding: 1rem;">
-      <div class="flex items-center gap-2 mb-3 text-emerald-700 dark:text-emerald-400" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; color: #047857;">
-        <span class="material-symbols-outlined font-bold">check_circle</span>
-        <h3 class="font-black uppercase tracking-tight text-sm" style="font-weight: 900; text-transform: uppercase; font-size: 0.875rem;">The Pros</h3>
+  <section class="py-12 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-primary/10">
+    <div class="bg-off-white/50 border border-primary/5 p-6 rounded-2xl shadow-sm">
+      <div class="flex items-center gap-2 mb-4 text-primary">
+        <span class="material-symbols-outlined font-bold text-emerald-600">check_circle</span>
+        <h3 class="font-display text-xl font-bold uppercase tracking-tight">The Pros</h3>
       </div>
-      <ul class="space-y-2">
+      <ul class="space-y-3">
         {% for pro in page.pros %}
-        <li class="text-sm flex items-start gap-2 text-slate-700 dark:text-slate-300" style="font-size: 0.875rem; display: flex; align-items: flex-start; gap: 0.5rem; color: #334155;">
-          <span class="text-emerald-500">&bull;</span> {{ pro }}
+        <li class="text-sm flex items-start gap-3 text-primary/80 font-light">
+          <span class="text-emerald-500 font-bold">•</span> {{ pro }}
         </li>
         {% endfor %}
       </ul>
     </div>
 
-    <div class="bg-rose-50 dark:bg-rose-950/30 border border-rose-100 dark:border-rose-900/50 p-4 rounded-xl" style="background-color: #fff1f2; border: 1px solid #ffe4e6; border-radius: 0.75rem; padding: 1rem;">
-      <div class="flex items-center gap-2 mb-3 text-rose-700 dark:text-rose-400" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; color: #be123c;">
-        <span class="material-symbols-outlined font-bold">error</span>
-        <h3 class="font-black uppercase tracking-tight text-sm" style="font-weight: 900; text-transform: uppercase; font-size: 0.875rem;">The Cons</h3>
+    <div class="bg-off-white/50 border border-primary/5 p-6 rounded-2xl shadow-sm">
+      <div class="flex items-center gap-2 mb-4 text-primary">
+        <span class="material-symbols-outlined font-bold text-rose-600">error</span>
+        <h3 class="font-display text-xl font-bold uppercase tracking-tight">The Cons</h3>
       </div>
-      <ul class="space-y-2">
+      <ul class="space-y-3">
         {% for con in page.cons %}
-        <li class="text-sm flex items-start gap-2 text-slate-700 dark:text-slate-300" style="font-size: 0.875rem; display: flex; align-items: flex-start; gap: 0.5rem; color: #334155;">
-          <span class="text-rose-500">&bull;</span> {{ con }}
+        <li class="text-sm flex items-start gap-3 text-primary/80 font-light">
+          <span class="text-rose-500 font-bold">•</span> {{ con }}
         </li>
         {% endfor %}
       </ul>
     </div>
   </section>
 
-  <!-- Detailed Story Section -->
-  <section class="px-6 py-4">
-    <h3 class="text-xl font-black mb-4 flex items-center gap-2" style="font-size: 1.25rem; font-weight: 900; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-      <span class="material-symbols-outlined text-primary">history_edu</span>
+  <!-- Detailed Story -->
+  <section class="py-12">
+    <h3 class="font-display text-3xl font-bold text-primary mb-8 flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary/30">history_edu</span>
       Detailed Story
     </h3>
-    <article class="prose prose-slate dark:prose-invert max-w-none">
+    <article class="prose prose-slate max-w-none
+      prose-headings:font-display prose-headings:text-primary prose-headings:font-bold
+      prose-p:text-primary/80 prose-p:font-light prose-p:leading-relaxed
+      prose-strong:text-primary prose-strong:font-bold
+      prose-li:text-primary/80 prose-li:font-light">
       {{ content }}
     </article>
   </section>
 
-  <!-- Related Updates -->
-  <section class="px-6 py-8">
-    <h3 class="text-xl font-black mb-4 flex items-center gap-2" style="font-size: 1.25rem; font-weight: 900; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-      <span class="material-symbols-outlined text-primary">update</span>
-      Related Updates
+  <!-- Timeline/Updates -->
+  <section class="py-12 border-t border-primary/10">
+    <h3 class="font-display text-2xl font-bold text-primary mb-8 flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary/30">update</span>
+      Journey Updates
     </h3>
-    <div class="flex flex-col divide-y divide-slate-200 dark:divide-slate-800" style="display: flex; flex-direction: column;">
+    <div class="space-y-6">
       {% assign posts_found = false %}
       {% for post in site.posts reversed %}
         {% if post.path contains page.builder %}
           {% assign posts_found = true %}
-          <a class="py-4 flex items-center justify-between group" href="{{ post.url | relative_url }}" style="padding-top: 1rem; padding-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; text-decoration: none;">
-            <div>
-              <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors" style="font-weight: 700; color: #0f172a; margin: 0;">{{ post.title }}</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem; margin-bottom: 0;">Published {{ post.date | date: "%B %d, %Y" }}</p>
+          <a class="group block bg-off-white/30 hover:bg-off-white/60 border border-primary/5 p-5 rounded-xl transition-all" href="{{ post.url | relative_url }}">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="font-bold text-primary group-hover:underline decoration-primary/30">{{ post.title }}</h4>
+                <p class="text-xs text-primary/40 uppercase tracking-widest mt-1">{{ post.date | date: "%B %d, %Y" }}</p>
+              </div>
+              <span class="material-symbols-outlined text-primary/20 group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </div>
-            <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
           </a>
         {% endif %}
       {% endfor %}
       {% if posts_found == false %}
-        <p class="text-sm text-slate-500 italic">No related updates found for this builder.</p>
+        <p class="text-sm text-primary/40 italic">No related updates found for this builder.</p>
       {% endif %}
     </div>
   </section>

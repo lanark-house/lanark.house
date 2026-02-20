@@ -3,41 +3,48 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		{% if page.collectionpage %}
-			{% assign collectiondata = site.collections | where: "label", page.collectionpage | first %}
-			<title>{{ collectiondata.title }} - {{ site.title }}</title>
-		{% elsif page.title %}
+		{% if page.title %}
 			<title>{{ page.title }} - {{ site.title }}</title>
 		{% else %}
 			<title>{{ site.title }}</title>
 		{% endif %}
 
 		<link rel="stylesheet" href="{{ "/assets/styles.css" | relative_url }}">
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-		{% if site.favicon %}
-			<link rel="shortcut icon" href="{{ site.favicon }}">
-		{% else %}
-			<link rel="shortcut icon" href="{{ site.logo }}">
-		{% endif %}
-
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-      }
-      .material-symbols-outlined {
-        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      }
-      .text-primary { color: #13a4ec; }
-      .bg-primary { background-color: #13a4ec; }
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1B3022", // Dark Forest Green
+                        mint: "#E0F2F1",    // Primary Mint
+                        "off-white": "#FDFDFD", // Neutral Off-White
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-mint text-primary font-sans antialiased;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+        }
     </style>
 	</head>
-	<body class="bg-slate-50 text-slate-900 antialiased">
-
+	<body class="min-h-screen flex flex-col">
 		{{ content }}
-
 		{% include legal-disclaimer-widget.html %}
 	</body>
 </html>
