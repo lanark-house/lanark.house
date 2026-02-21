@@ -1,5 +1,5 @@
 ---
-layout: builder
+layout: review
 title: "Sterling Homes Review"
 builder: "sterling-homes"
 address:

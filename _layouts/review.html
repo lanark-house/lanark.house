@@ -1,0 +1,134 @@
+---
+layout: default
+---
+
+<header class="sticky top-0 z-50 bg-mint/90 backdrop-blur-md border-b border-primary/5">
+  <div class="flex items-center justify-between px-6 py-4 max-w-4xl mx-auto w-full">
+    <div class="flex items-center gap-4">
+      <a href="{{ '/' | relative_url }}" class="flex items-center justify-center p-2 rounded-full hover:bg-primary/5 transition-colors">
+        <span class="material-symbols-outlined text-primary">arrow_back</span>
+      </a>
+      <h1 class="font-display text-2xl font-bold text-primary">lanark.house</h1>
+    </div>
+    {% include site-nav.html %}
+  </div>
+</header>
+
+<main class="max-w-4xl mx-auto pb-24 px-6">
+  <!-- Builder Profile Hero -->
+  <section class="py-12 border-b border-primary/10">
+    <div class="flex flex-col gap-6">
+      <div class="flex items-center gap-6">
+        <div class="size-20 bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10" style="width: 80px; height: 80px;">
+          <span class="material-symbols-outlined text-primary" style="font-size: 40px;">domain</span>
+        </div>
+        <div>
+          <h2 class="font-display text-4xl font-bold text-primary leading-tight">{{ page.title }}</h2>
+          <p class="text-primary/50 text-sm font-bold uppercase tracking-widest mt-1">Calgary Home Builder Review</p>
+        </div>
+      </div>
+
+      <!-- Rating Block -->
+      <div class="flex items-center gap-4">
+        <div class="flex flex-col">
+          <div class="flex items-center gap-3">
+            <span class="text-5xl font-display font-bold text-primary">{{ page.rating }}</span>
+            <div class="flex text-primary">
+              {% assign rating = page.rating | plus: 0 %}
+              {% for i in (1..5) %}
+                {% if i <= rating %}
+                  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                {% else %}
+                  <span class="material-symbols-outlined">star</span>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-primary/40 mt-1">Personal Rating</span>
+        </div>
+      </div>
+
+      <!-- Address Metadata -->
+      <div class="flex items-start gap-3 text-primary/70">
+        <span class="material-symbols-outlined text-primary/40 text-xl">location_on</span>
+        <p class="text-sm font-light">
+          {{ page.address.streetAddress }}, {{ page.address.addressLocality }}, {{ page.address.addressRegion }} {{ page.address.postalCode }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pros & Cons -->
+  <section class="py-12 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-primary/10">
+    <div class="bg-off-white/50 border border-primary/5 p-6 rounded-2xl shadow-sm">
+      <div class="flex items-center gap-2 mb-4 text-primary">
+        <span class="material-symbols-outlined font-bold text-emerald-600">check_circle</span>
+        <h3 class="font-display text-xl font-bold uppercase tracking-tight">The Pros</h3>
+      </div>
+      <ul class="space-y-3">
+        {% for pro in page.pros %}
+        <li class="text-sm flex items-start gap-3 text-primary/80 font-light">
+          <span class="text-emerald-500 font-bold">•</span> {{ pro }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="bg-off-white/50 border border-primary/5 p-6 rounded-2xl shadow-sm">
+      <div class="flex items-center gap-2 mb-4 text-primary">
+        <span class="material-symbols-outlined font-bold text-rose-600">error</span>
+        <h3 class="font-display text-xl font-bold uppercase tracking-tight">The Cons</h3>
+      </div>
+      <ul class="space-y-3">
+        {% for con in page.cons %}
+        <li class="text-sm flex items-start gap-3 text-primary/80 font-light">
+          <span class="text-rose-500 font-bold">•</span> {{ con }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Detailed Story -->
+  <section class="py-12">
+    <h3 class="font-display text-3xl font-bold text-primary mb-8 flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary/30">history_edu</span>
+      Detailed Story
+    </h3>
+    <article class="prose prose-slate max-w-none
+      prose-headings:font-display prose-headings:text-primary prose-headings:font-bold
+      prose-p:text-primary/80 prose-p:font-light prose-p:leading-relaxed
+      prose-strong:text-primary prose-strong:font-bold
+      prose-li:text-primary/80 prose-li:font-light">
+      {{ content }}
+    </article>
+  </section>
+
+  <!-- Timeline/Updates -->
+  <section class="py-12 border-t border-primary/10">
+    <h3 class="font-display text-2xl font-bold text-primary mb-8 flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary/30">update</span>
+      Journey Updates
+    </h3>
+    <div class="space-y-6">
+      {% assign posts_found = false %}
+      {% for post in site.posts reversed %}
+        {% if post.path contains page.builder %}
+          {% assign posts_found = true %}
+          <a class="group block bg-off-white/30 hover:bg-off-white/60 border border-primary/5 p-5 rounded-xl transition-all" href="{{ post.url | relative_url }}">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="font-bold text-primary group-hover:underline decoration-primary/30">{{ post.title }}</h4>
+                <p class="text-xs text-primary/40 uppercase tracking-widest mt-1">{{ post.date | date: "%B %d, %Y" }}</p>
+              </div>
+              <span class="material-symbols-outlined text-primary/20 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+      {% if posts_found == false %}
+        <p class="text-sm text-primary/40 italic">No related updates found for this builder.</p>
+      {% endif %}
+    </div>
+  </section>
+</main>

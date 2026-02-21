@@ -21,4 +21,7 @@ plugins:
 - jekyll-sitemap
 remote_theme: daviddarnes/garth
 exclude:
-  - "uploads/Contract - Tuesday at 1-47 PM.m4a"
+  - "_uploads/*.m4a"
+  - "_uploads/**/*.mp4"
+  - "_uploads/**/*.PEF"
+  - "_uploads/**/*.pef"

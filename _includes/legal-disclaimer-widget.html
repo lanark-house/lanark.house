@@ -3,8 +3,7 @@
 <!-- This version opens automatically on first entry and uses localStorage to prevent it from re-appearing -->
 <!-- until the widget's publish date changes or the user clears their browser storage. -->
 
-<!-- Tailwind CSS is used for styling. This is a single-file CDN for simplicity. -->
-<script src="https://cdn.tailwindcss.com"></script>
+
 
 <!-- The modal container. It's a semantic <dialog> element. -->
 <dialog id="disclaimer-modal" class="bg-white p-6 rounded-lg shadow-xl backdrop:bg-black backdrop:opacity-50 max-w-2xl mx-auto my-10 font-sans">
@@ -21,7 +20,7 @@
         </p>
 
         <!-- Button to close the modal. This also stores the timestamp. -->
-        <button id="disclaimer-accept-btn" class="mt-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 transition duration-300">
+        <button id="disclaimer-accept-btn" class="mt-4 px-4 py-2 bg-primary text-white font-semibold rounded-md shadow-md hover:bg-primary/90 transition duration-300">
             I Understand
         </button>
     </div>
