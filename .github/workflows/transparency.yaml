@@ -41,7 +41,7 @@ jobs:
         run: |
           curl -LO --silent https://www.jayman.com/assets/Uploads/JAY-2609-Fit-and-Finish-Brochure-CAL_WEB_2025.pdf
           sha256sum JAY-2609-Fit-and-Finish-Brochure-CAL_WEB_2025.pdf >> $GITHUB_STEP_SUMMARY
-      - uses: actions/attest-build-provenance@ef244123eb79f2f7a7e75d99086184180e6d0018 # v1.4.4
+      - uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
           subject-path: '.github/workflows/transparency.yaml, _uploads/**'
       - name: Commit & Push changes
